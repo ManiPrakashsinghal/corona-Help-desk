@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ShareService } from '../services/share.service';
 import { Router } from '@angular/router';
 
@@ -19,14 +19,19 @@ export class RegistrationPage implements OnInit {
     private router: Router
   ) { 
     this.registrationForm = this.fb.group({
-      name: [null],
-      address: [null],
-      pinCode: [null],
-      phoneNo: [null],
-      description: [null],
+      name: [null, [Validators.required, Validators.minLength(3)]],
+      address: [null, [Validators.required]],
+      pinCode: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+      phoneNo: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      title: [null, [Validators.required]],
+      description: [null, [Validators.required]],
       // city: [null],
       // state: [null]
     })
+  }
+
+  get errorControl() {
+    return this.registrationForm.controls;
   }
 
   ngOnInit() {
@@ -34,6 +39,11 @@ export class RegistrationPage implements OnInit {
   }
   listPage(){
     this.router.navigate(['/list'])
+  }
+
+  register(mode: String){
+    console.log("user", this.registrationForm.value);
+    localStorage.setItem('user', JSON.stringify(this.registrationForm.value))
   }
 
 }
