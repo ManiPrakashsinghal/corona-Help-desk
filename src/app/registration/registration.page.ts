@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ShareService } from '../services/share.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +15,8 @@ export class RegistrationPage implements OnInit {
   
   constructor(
     private fb: FormBuilder,
-    private shareService: ShareService
+    private shareService: ShareService,
+    private router: Router
   ) { 
     this.registrationForm = this.fb.group({
       name: [null],
@@ -29,6 +31,9 @@ export class RegistrationPage implements OnInit {
 
   ngOnInit() {
     this.mode = this.shareService.getData('mode');
+  }
+  listPage(){
+    this.router.navigate(['/list'])
   }
 
 }

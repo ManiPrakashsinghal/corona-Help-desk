@@ -26,5 +26,8 @@ export class ShareService {
   goBack(){
     this.navCtrl.pop();
   }
+  getList(){
+    
+  }
 
 }
