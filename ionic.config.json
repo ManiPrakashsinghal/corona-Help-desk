@@ -1,0 +1,7 @@
+{
+  "name": "coronaHelp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
