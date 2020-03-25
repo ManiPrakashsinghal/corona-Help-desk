@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<form>
+  <ion-grid justify-content-center>
+    <ion-row color="primary" justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div text-center>
+          <h3>Enter your details.</h3>
+        </div>
+        <div padding>
+          <ion-item>
+            <ion-input name="name" type="text" placeholder="Name" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="phoneNo" type="number" placeholder="+91" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="pinCode" type="number" placeholder="Pin code" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="title" type="text" placeholder="Title" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-textarea name="description" placeholder="Enter Detail" required></ion-textarea>
+          </ion-item>
+          <!-- <ion-item>
+            <ion-label>Select State</ion-label>
+            <ion-select name="Select State" placeholder="Select State">
+              <ion-select-option value="null" >--Select State--</ion-select-option>
+              <ion-select-option *ngFor="let state of statewiseCities; let i = index" [value]="state[i]">{{state[i]}}</ion-select-option>
+            </ion-select>
+          </ion-item> -->
+        </div>
+        <div padding>
+          <ion-button size="large" type="submit" expand="block" *ngIf="mode=='getHelp'">I need help</ion-button>
+          <ion-button size="large" type="submit" expand="block" *ngIf="mode=='doHelp'">I want to help</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>
+</ion-content>
