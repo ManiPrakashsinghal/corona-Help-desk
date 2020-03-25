@@ -37,13 +37,13 @@ export class RegistrationPage implements OnInit {
   ngOnInit() {
     this.mode = this.shareService.getData('mode');
   }
-  listPage(){
-    this.router.navigate(['/list'])
-  }
 
   register(mode: String){
     console.log("user", this.registrationForm.value);
-    localStorage.setItem('user', JSON.stringify(this.registrationForm.value))
+    localStorage.setItem('user', JSON.stringify(this.registrationForm.value));
+    this.shareService.setData('flag',mode);
+    this.router.navigate(['/list',])
+
   }
 
 }

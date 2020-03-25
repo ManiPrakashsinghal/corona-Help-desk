@@ -12,9 +12,13 @@
       <ion-card-title>{{data.name}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <span>Call or Message</span>
-      <span><ion-icon item-right name="call-outline"></ion-icon></span>
-      <span><ion-icon item-right name="chatbox-outline"></ion-icon></span>
+        <ion-grid>
+        <ion-row>
+      <ion-col class="ion-margin-start"><span>Call or Message</span></ion-col>
+      <ion-col class="ion-margin-end"><span><ion-icon  item-right name="call-outline"></ion-icon></span></ion-col>
+      <ion-col class="ion-margin-end"><span><ion-icon class="ion-margin-end" item-right name="chatbox-outline"></ion-icon></span></ion-col>
+      </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-list>

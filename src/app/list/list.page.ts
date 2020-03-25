@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShareService } from '../services/share.service';
+import { Router, Route, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -7,10 +8,15 @@ import { ShareService } from '../services/share.service';
   styleUrls: ['./list.page.scss'],
 })
 export class ListPage implements OnInit {
-
-  constructor(public shareService:ShareService) { }
+mode:string;
+  constructor(
+    public shareService:ShareService,
+    private router:Router,
+    private route: ActivatedRoute 
+    ) { }
   list:any[] = [{'name':'Ravi','address':'ashasjd','pinCode':302020,'phoneNo':98876543210,'description':'hhasdasdasiuyooernnr dfa'}]
   ngOnInit() {
+    this.mode = this.shareService.getData('flag')
     this.shareService.getList()
   }
 
