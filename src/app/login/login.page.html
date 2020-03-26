@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <ion-card>
+    <ion-card-header>
+      User Login
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list no-line>
+        <ion-item>
+          <ion-input type="text" placeholder="Email Id" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" placeholder="Password"></ion-input>
+        </ion-item>
+        <a>Forgot your login detail? <b>Get help signing in</b></a>
+        <button ion-button block outline color="light" (click)="doLogin()">Log in</button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <button class="bottom" ion-button clear full color="light" (click)="goToReg()">Don't have an account? Sign up</button>
+</ion-content>
+
