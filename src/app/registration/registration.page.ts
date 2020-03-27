@@ -61,7 +61,7 @@ export class RegistrationPage implements OnInit {
 
   }
   phoneAuth(){
-    this.firebaseAuth.verifyPhoneNumber(this.registrationForm.get('phoneNo').value,30000).then(verifyId=>{
+    this.firebaseAuth.verifyPhoneNumber(this.registrationForm.get('phoneNo').value, 60).then(verifyId=>{
       this.verificationId = verifyId; 
     }).catch(err=>{
       console.log(err);
