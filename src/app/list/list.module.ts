@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { ListPageRoutingModule } from './list-routing.module';
 
 import { ListPage } from './list.page';
+import { ColorchangeDirective } from '../directives/colorchange.directive';
 
 @NgModule({
+
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ListPageRoutingModule
+    ListPageRoutingModule,
+    
   ],
-  declarations: [ListPage]
+  declarations: [ListPage,ColorchangeDirective]
 })
 export class ListPageModule {}

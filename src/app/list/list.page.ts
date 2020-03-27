@@ -9,6 +9,8 @@ import { Router, Route, ActivatedRoute } from '@angular/router';
 })
 export class ListPage implements OnInit {
 mode:string;
+data:any;
+  colors: any = 'white';
   constructor(
     public shareService:ShareService,
     private router:Router,
@@ -18,6 +20,9 @@ mode:string;
   ngOnInit() {
     this.mode = this.shareService.getData('flag')
     this.shareService.getList()
+  }
+  onOk(event){
+    this.colors = event.target.value
   }
 
 }
