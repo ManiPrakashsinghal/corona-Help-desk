@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "317846900767",
+    "firebase_url": "https://corona-help-desk.firebaseio.com",
+    "project_id": "corona-help-desk",
+    "storage_bucket": "corona-help-desk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317846900767:android:cd8df87c9bcb9eaca3852a",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317846900767-8jajauu1887pdjo6lv36gkmv42vlivi9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmGXYaaa4rHPXQaSMBagK4WAjencwRpiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317846900767-8jajauu1887pdjo6lv36gkmv42vlivi9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

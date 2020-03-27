@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { ShareService } from '../services/share.service';
-
+import { from } from 'rxjs';
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -10,13 +10,16 @@ import { ShareService } from '../services/share.service';
 export class HomePage {
 
   constructor(
-    public navCtrl: NavController,
-    private shareService: ShareService
-  ) {}
+    private shareService: ShareService,
+    private navCtrl: NavController
+  ) {
+   
+  }
 
   registration(mode: string){
     this.shareService.setData('mode', mode);
     this.navCtrl.navigateForward('/registration');
   }
+  
 
 }
