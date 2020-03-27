@@ -72,4 +72,8 @@
         <param name="android-package" value="org.apache.cordova.firebase.FirebasePlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="FirebaseAuthentication">
+        <param name="android-package" value="by.chemerisuk.cordova.firebase.FirebaseAuthenticationPlugin" />
+        <param name="onload" value="false" />
+    </feature>
 </widget>

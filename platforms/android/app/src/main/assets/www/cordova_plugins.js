@@ -47,6 +47,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "FirebasePlugin"
       ]
+    },
+    {
+      "id": "cordova-plugin-firebase-authentication.FirebaseAuthentication",
+      "file": "plugins/cordova-plugin-firebase-authentication/www/FirebaseAuthentication.js",
+      "pluginId": "cordova-plugin-firebase-authentication",
+      "merges": [
+        "cordova.plugins.firebase.auth"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -56,6 +64,9 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-ionic-webview": "4.1.3",
     "cordova-plugin-ionic-keyboard": "2.2.0",
-    "cordova-plugin-firebase": "2.0.5"
+    "cordova-plugin-firebase": "2.0.5",
+    "cordova-support-android-plugin": "1.0.2",
+    "cordova-support-google-services": "1.4.0",
+    "cordova-plugin-firebase-authentication": "3.1.0"
   };
 });

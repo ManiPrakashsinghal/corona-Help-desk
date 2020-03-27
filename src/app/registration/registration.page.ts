@@ -33,9 +33,8 @@ export class RegistrationPage implements OnInit {
       // city: [null],
       // state: [null]
     })
-    this.firebaseAuth.onAuthStateChanged(function(userInfo) {
+    this.firebaseAuth.onAuthStateChanged().subscribe(userInfo=> {
       if (userInfo) {
-
           this.navCtrl.navigateRoot['/list']
       } else {
         this.navCtrl.navigateRoot['']
@@ -70,7 +69,7 @@ export class RegistrationPage implements OnInit {
     })
   }
   signInCode(){
-    this.firebaseAuth.signInWithVerificationId(this.verificationId, "123456").then(user=>{
+    this.firebaseAuth.signInWithVerificationId(this.verificationId, 123456).then(user=>{
       console.log(user);
       
     });
