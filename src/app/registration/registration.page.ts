@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ShareService } from '../services/share.service';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
-import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx'
+import { NavController, ToastController } from '@ionic/angular';
+// import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx'
 
 @Component({
   selector: 'app-registration',
@@ -16,13 +16,15 @@ export class RegistrationPage implements OnInit {
   public mode: String;
   verificationId: any;
   text: any = 'begining'
-  
+  verificationFlag = true;
+  otp: any;
   constructor(
     private fb: FormBuilder,
     private shareService: ShareService,
     private router: Router,
     public navCtrl: NavController,
-    private firebaseAuth: FirebaseAuthentication
+    public toastController: ToastController
+    // private firebaseAuth: FirebaseAuthentication
   ) { 
     this.registrationForm = this.fb.group({
       name: [null, [Validators.required, Validators.minLength(3)]],
@@ -34,15 +36,14 @@ export class RegistrationPage implements OnInit {
       // city: [null],
       // state: [null]
     })
-    this.firebaseAuth.onAuthStateChanged().subscribe(userInfo=> {
-      if (userInfo) {
-          this.navCtrl.navigateRoot['/list']
-      } else {
-        this.navCtrl.navigateRoot['']
+  //   this.firebaseAuth.onAuthStateChanged().subscribe(userInfo=> {
+  //     if (userInfo) {
+  //         this.navCtrl.navigateRoot['/list']
+  //     } else {
+  //       this.navCtrl.navigateRoot['']
 
-          // user was signed out
-      }
-  });
+  //     }
+  // });
   }
 
   get errorControl() {
@@ -58,7 +59,7 @@ export class RegistrationPage implements OnInit {
     localStorage.setItem('user', JSON.stringify(this.registrationForm.value));
     this.shareService.setData('flag',mode);
     this.phoneAuth();
-    // this.router.navigate(['/list',])
+    this.router.navigate(['/list',])
 
   }
   phoneAuth(){
@@ -66,20 +67,34 @@ export class RegistrationPage implements OnInit {
     this.firebaseAuth.verifyPhoneNumber(tel, 3000).then(verifyId=>{
       this.verificationId = verifyId;
       this.text = "going to verify"
+     this.presentToast()
+      this.verificationFlag = true;
       setTimeout(()=>{this.signInCode()}, 1000)
     }).catch(err=>{
       console.log(err);
       this.text = 'Login Failed'
+   this.presentToast()
     })
   }
   signInCode(){
-    this.firebaseAuth.signInWithVerificationId(this.verificationId, 123456).then(user=>{
+    this.firebaseAuth.signInWithVerificationId(this.verificationId, this.otp).then(user=>{
       console.log(user);
       this.text = 'verified!'
+   this.presentToast()
     }).catch(err => {
       console.log(err);
       this.text = 'verification Failed'
+   this.presentToast()
     });
   }
-
+  onVerifiy(){
+    this.signInCode();
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: this.text,
+      duration: 2000
+    });
+    toast.present();
+  }
 }

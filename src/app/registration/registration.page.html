@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-<form [formGroup]="registrationForm">
+<form [formGroup]="registrationForm" *ngIf="!verificationFlag">
   <ion-grid>
     <ion-row color="primary" class="ion-justify-content-center">
       <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
@@ -82,4 +82,16 @@
   </ion-grid>
 </form>
 {{text}}
+<ion-card *ngIf = "verificationFlag">
+  <ion-card-header>
+    <ion-card-subtitle>Enter OTP</ion-card-subtitle>
+    <ion-card-title>
+      <ion-input [(ngModel)] = "otp"></ion-input>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-button (click)="onVerifiy()">verifiy</ion-button>
+  <!-- <ion-card-content>
+
+  </ion-card-content> -->
+</ion-card>
 </ion-content>
