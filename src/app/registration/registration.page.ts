@@ -15,7 +15,7 @@ export class RegistrationPage implements OnInit {
   public registrationForm: FormGroup;
   public mode: String;
   verificationId: any;
-  text: any = 'begining'
+  public showOtpScreen: boolean = false;
   
   constructor(
     private fb: FormBuilder,
@@ -39,7 +39,6 @@ export class RegistrationPage implements OnInit {
           this.navCtrl.navigateRoot['/list']
       } else {
         this.navCtrl.navigateRoot['']
-
           // user was signed out
       }
   });
@@ -54,6 +53,7 @@ export class RegistrationPage implements OnInit {
   }
 
   register(mode: String){
+    this.shareService.presentToast("Data done", 2000);
     console.log("user", this.registrationForm.value);
     localStorage.setItem('user', JSON.stringify(this.registrationForm.value));
     this.shareService.setData('flag',mode);
@@ -61,24 +61,28 @@ export class RegistrationPage implements OnInit {
     // this.router.navigate(['/list',])
 
   }
+  
   phoneAuth(){
     let tel = `+91${this.registrationForm.get('phoneNo').value}`;
     this.firebaseAuth.verifyPhoneNumber(tel, 3000).then(verifyId=>{
       this.verificationId = verifyId;
-      this.text = "going to verify"
+      this.shareService.presentToast("OTP has been sent!", 1000);
+      this.showOtpScreen = true;
       setTimeout(()=>{this.signInCode()}, 1000)
     }).catch(err=>{
       console.log(err);
-      this.text = 'Login Failed'
+      this.shareService.presentToast("Please check your number!", 1000);
     })
   }
+
+
   signInCode(){
-    this.firebaseAuth.signInWithVerificationId(this.verificationId, 123456).then(user=>{
+    this.firebaseAuth.signInWithVerificationId(this.verificationId, '123456').then(user=>{
       console.log(user);
-      this.text = 'verified!'
+      // this.text = 'verified!'
     }).catch(err => {
       console.log(err);
-      this.text = 'verification Failed'
+      this.shareService.presentToast("Please Enter correct OTP!", 1000);
     });
   }
 
