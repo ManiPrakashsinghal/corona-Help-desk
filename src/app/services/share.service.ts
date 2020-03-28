@@ -64,5 +64,12 @@ export class ShareService {
   getList(){
     
   }
+  checkAuth(userName, password){
+    if(userName == this.data['name'] && password == this.data['password']){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
 }
