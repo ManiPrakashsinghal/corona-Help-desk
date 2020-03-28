@@ -15,6 +15,7 @@ export class RegistrationPage implements OnInit {
   public registrationForm: FormGroup;
   public mode: String;
   verificationId: any;
+  text: any = 'begining'
   
   constructor(
     private fb: FormBuilder,
@@ -61,17 +62,23 @@ export class RegistrationPage implements OnInit {
 
   }
   phoneAuth(){
-    this.firebaseAuth.verifyPhoneNumber(this.registrationForm.get('phoneNo').value, 60).then(verifyId=>{
-      this.verificationId = verifyId; 
+    let tel = `+91${this.registrationForm.get('phoneNo').value}`;
+    this.firebaseAuth.verifyPhoneNumber(tel, 3000).then(verifyId=>{
+      this.verificationId = verifyId;
+      this.text = "going to verify"
+      setTimeout(()=>{this.signInCode()}, 1000)
     }).catch(err=>{
       console.log(err);
-      
+      this.text = 'Login Failed'
     })
   }
   signInCode(){
     this.firebaseAuth.signInWithVerificationId(this.verificationId, 123456).then(user=>{
       console.log(user);
-      
+      this.text = 'verified!'
+    }).catch(err => {
+      console.log(err);
+      this.text = 'verification Failed'
     });
   }
 
